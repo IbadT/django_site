@@ -1,0 +1,37 @@
+<!-- это шаблон django -->
+
+{% extends "base.html" %} <!-- значит, что он разширяет базовый шаблон -->
+
+{% block title %}All Courses{% endblock %}
+
+{% block content %} <!-- для того, чтобы указать, какая часть будет встраиваться в основную часть base.html -->
+<table class="table mt-5 table-bordered table-striped table-hover">
+    <thead class ="table-dark">
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Students Quantity</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td>
+                <a href={{course.id}}>{{course.title}}</a>
+            </td>
+            {% comment %} <td>
+                <a href={ url 'single_course' course.id }>{{course.title}}</a>
+            </td> {% endcomment %}
+            <td>{{course.category}}</td>
+            <td>{{course.price}}</td>
+            <td>{{course.students_qty}}</td>
+            <td><button class="btn btn-primary">Buy</button></td>
+        </tr>
+        {% comment %} для указания, где заканчивается цикл for  {% endcomment %}
+        {% endfor %} 
+    </tbody>
+</table>
+{% endblock %}
+{% comment %} для указания, где этот встраиваемый блок будет заканчиваться  {% endcomment %}
